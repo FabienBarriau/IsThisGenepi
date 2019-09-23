@@ -1,0 +1,35 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>C'est du génépi ?</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	</head>
+	<body>
+        <header>
+            <h1> C'est du génépi ? </h1>
+        </header>
+        <div id="div_body">
+            <div id="div_uploadImage">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input type="file" name="img_send" />
+                    <input type="submit" value="Envoyer" />
+                </form>
+            </div >
+            {% if request.method == "POST" %}
+            <div id="div_pictures">
+                <img src="{{ url_for('static', filename='new_img/' + img_send_name) }}" width="400">
+                <img src="{{ url_for('static', filename='pictures/' + best_img_name) }}" width="400">
+            </div>
+            <div id="div_description">
+                <p> La plante qui ressemble le plus à la votre dans notre base est {{ latin_name }}</p>
+                <p> {{ description }} </p>
+            </div>
+            {% else %}
+            <div id="div_description">
+                <p> Envoyer votre image de plantes pour savoir de quels espèces il s'agit.</p>
+            </div>
+            {% endif %}
+        </div>
+	</body>
+</html>
